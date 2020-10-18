@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"ippo.assignment1.controller","l":"BigController"},{"p":"ippo.assignment1.proxy","l":"CacheProxy"},{"p":"ippo.assignment1.controller","l":"HashController"},{"p":"ippo.assignment1","l":"Main"},{"p":"ippo.assignment1.controller","l":"SimpleController"}];updateSearchResults();

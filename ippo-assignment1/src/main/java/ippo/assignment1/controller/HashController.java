@@ -10,12 +10,12 @@ import ippo.assignment1.library.view.ViewFromProperties;
 import ippo.assignment1.library.utils.HashMap;
 
 /**
- * A "big" controller for the PictureViewer application.
+ * A "Hash" controller for the PictureViewer application.
  * 
  * @author Paul Anderson &lt;dcspaul@ed.ac.uk&gt, amended by student for assigment 1;
  * @version 1.1 student amended verison, 17/10/2020
  */
-public class HashController<MunroMap, Map> implements Controller {
+public class HashController implements Controller {
 
 	private View view;
 	private Service service;
@@ -23,8 +23,8 @@ public class HashController<MunroMap, Map> implements Controller {
 	private int selection1;
 	private int selection2;
 	private int selection3;
-
-
+	private int ListLenght;
+	HashMap<Integer, String> MunroMap = new HashMap<Integer, String>();
 
 	/**
 	 * Start the controller.
@@ -35,13 +35,11 @@ public class HashController<MunroMap, Map> implements Controller {
 		view = new ViewFromProperties(this);
 		service = new ServiceFromProperties();
 
-		// create three selections in the interface
-		selection1 = view.addSelection("Stob Binnein");
-		selection2 = view.addSelection("Gairich");
-		selection3 = view.addSelection("Ben Lomond");
-		HashMap<Integer, String> MunroMap = new HashMap<Integer, String>();
-
-
+		// adds the default elements to the Map
+		ListLenght = 0;
+		addSubject("Stob Binnein");
+		addSubject("Gairich");
+		addSubject("Ben Lomond");
 
 		// start the interface
 		view.start();
@@ -58,19 +56,22 @@ public class HashController<MunroMap, Map> implements Controller {
 		// by default, this is an empty picture
 		// (this is used if the selectionID does not match)
 		Picture picture = new Picture();
+		//create a picture using the hash map
+		picture = service.getPicture(MunroMap.get(selectionID),1);
 
-		// create a picture corresponding to the selectionID
-		if (selectionID==selection1) {
-			picture = service.getPicture("Stob Binnein",1);
-		}
-		else if (selectionID==selection2) {
-			picture = service.getPicture("Gairich",1);
-		}
-		else if (selectionID==selection3) {
-			picture = service.getPicture("Ben Lomond",1);
-		}
-		
 		// show the picture in the interface
 		view.showPicture(picture);
 	}
+
+	public void addSubject(String Munro) {
+
+		int MKey;
+
+		ListLenght += 1;
+		MKey = view.addSelection(Munro);
+		MunroMap.put(MKey, Munro);
+
+
+	}
 }
+
