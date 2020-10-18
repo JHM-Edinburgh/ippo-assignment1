@@ -7,14 +7,15 @@ import ippo.assignment1.library.service.Service;
 import ippo.assignment1.library.service.ServiceFromProperties;
 import ippo.assignment1.library.view.View;
 import ippo.assignment1.library.view.ViewFromProperties;
+import ippo.assignment1.library.utils.HashMap;
 
 /**
- * A simple controller for the PictureViewer application.
+ * A "big" controller for the PictureViewer application.
  * 
- * @author Paul Anderson &lt;dcspaul@ed.ac.uk&gt;
- * @version 20.3, 14/10/2020
+ * @author Paul Anderson &lt;dcspaul@ed.ac.uk&gt, amended by student for assigment 1;
+ * @version 1.1 student amended verison, 17/10/2020
  */
-public class BigController implements Controller {
+public class HashController<MunroMap, Map> implements Controller {
 
 	private View view;
 	private Service service;
@@ -22,7 +23,8 @@ public class BigController implements Controller {
 	private int selection1;
 	private int selection2;
 	private int selection3;
-	private int selection4;
+
+
 
 	/**
 	 * Start the controller.
@@ -37,7 +39,9 @@ public class BigController implements Controller {
 		selection1 = view.addSelection("Stob Binnein");
 		selection2 = view.addSelection("Gairich");
 		selection3 = view.addSelection("Ben Lomond");
-		selection4 = view.addSelection("Test");
+		HashMap<Integer, String> MunroMap = new HashMap<Integer, String>();
+
+
 
 		// start the interface
 		view.start();
@@ -63,9 +67,6 @@ public class BigController implements Controller {
 			picture = service.getPicture("Gairich",1);
 		}
 		else if (selectionID==selection3) {
-			picture = service.getPicture("Ben Lomond",1);
-		}
-		else if (selectionID==selection4) {
 			picture = service.getPicture("Ben Lomond",1);
 		}
 		
