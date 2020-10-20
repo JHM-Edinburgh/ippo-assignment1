@@ -1,13 +1,14 @@
-// IPPO Assignment 1, Version 20.3, 14/10/2020
+// IPPO Assignment 1, Version 20.3, 18/10/2020
 package ippo.assignment1.controller;
 
 import ippo.assignment1.library.Picture;
 import ippo.assignment1.library.controller.Controller;
 import ippo.assignment1.library.service.Service;
 import ippo.assignment1.library.service.ServiceFromProperties;
+import ippo.assignment1.library.utils.HashMap;
+import ippo.assignment1.library.utils.Properties;
 import ippo.assignment1.library.view.View;
 import ippo.assignment1.library.view.ViewFromProperties;
-import ippo.assignment1.library.utils.HashMap;
 
 /**
  * A "Hash" controller for the PictureViewer application.
@@ -15,14 +16,10 @@ import ippo.assignment1.library.utils.HashMap;
  * @author Paul Anderson &lt;dcspaul@ed.ac.uk&gt, amended by student for assigment 1;
  * @version 1.1 student amended verison, 17/10/2020
  */
-public class HashController implements Controller {
+public class ProptertyController implements Controller {
 
 	private View view;
 	private Service service;
-
-	private int selection1;
-	private int selection2;
-	private int selection3;
 	HashMap<Integer, String> MunroMap = new HashMap<Integer, String>();
 
 	/**
@@ -30,14 +27,18 @@ public class HashController implements Controller {
 	 */
 	public void start() {
 
+		String MunroList;
+
 		// create the view and the service objects
 		view = new ViewFromProperties(this);
 		service = new ServiceFromProperties();
+		MunroList = Properties.get(controller.subjects);
 
-		// adds the default elements to the Map
-		addSubject("Stob Binnein");
-		addSubject("Gairich");
-		addSubject("Ben Lomond");
+		/* placeholder list until I get the get method to work */
+		MunroList = "Beinn a' Bheithir, Schiehallion, Ben Lui, Lochnagar";
+
+		/* should the list format be specified? */
+		generateButtons(MunroList);
 
 		// start the interface
 		view.start();
@@ -67,6 +68,50 @@ public class HashController implements Controller {
 		MKey = view.addSelection(Munro);
 		MunroMap.put(MKey, Munro);
 
+	}
+	//this method was found on the interwebs, should probably get the reference
+	public char getCharFromString(String stringToProcess, int index) {
+		char Character;
+		Character = stringToProcess.toCharArray()[index];
+		return Character;
+	}
+
+	//returns the first comma seperated value
+	public String getItemFromString(String stringToProcess) {
+		String returnItem;
+		char tempItem;
+		int index;
+
+		index = 0;
+		returnItem = "";
+		while(index < stringToProcess.length()) {
+			tempItem = getCharFromString(stringToProcess, index);
+			if (tempItem != ',') {
+			returnItem = returnItem + tempItem;
+			index++;
+			}
+			else {
+				return returnItem;
+
+			}
+		}
+		return returnItem;
+	}
+
+	public void generateButtons(String MunroList) {
+
+		String CurrentMunro;
+		int index;
+
+		//gets first Munro from list
+		while(MunroList.length() > 0) {
+			CurrentMunro = getItemFromString(MunroList);
+			addSubject(CurrentMunro);
+			MunroList = MunroList.replace(CurrentMunro + ",", "");
+			if(CurrentMunro.equals(MunroList)) {
+				MunroList = "";
+			};
+		}
 	}
 }
 
