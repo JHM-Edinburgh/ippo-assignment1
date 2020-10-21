@@ -55,7 +55,5 @@ public class CacheProxyTest implements Service {
 	 * @return the name of the service
 	 */
 	@Override
-	public String serviceName() {
-		return "CacheProxyTest";
-	}
+	public String serviceName() { return "CacheProxyTest"; }
 }

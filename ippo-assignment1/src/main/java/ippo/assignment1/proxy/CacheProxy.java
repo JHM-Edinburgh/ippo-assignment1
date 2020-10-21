@@ -4,6 +4,7 @@ package ippo.assignment1.proxy;
 import ippo.assignment1.library.Picture;
 import ippo.assignment1.library.service.Service;
 import ippo.assignment1.library.service.ServiceFromProperties;
+import ippo.assignment1.library.utils.HashMap;
 
 /**
  * A skeleton cache proxy service for the PictureViewer application.
@@ -15,6 +16,7 @@ import ippo.assignment1.library.service.ServiceFromProperties;
 public class CacheProxy implements Service {
 
 	private Service baseService = null;
+	HashMap<String, Picture> imageCache = new HashMap<String, Picture>();
 
 	/**
 	 * Return a textual name for the service.
@@ -39,6 +41,7 @@ public class CacheProxy implements Service {
 	 * @param baseService the base service
 	 */
 	public CacheProxy(Service baseService) {
+
 		this.baseService = baseService;
 	}
 
@@ -49,7 +52,27 @@ public class CacheProxy implements Service {
     * @param index the index of the matching picture to return
     * @return the requested picture
     */
-	public Picture getPicture(String subject, int index) {	
+	public Picture getPicture(String subject, int index) {
+
 		return baseService.getPicture(subject, index);
     }
+
+    /* gets image, but checks cache first */
+    public Picture findPicture (String subject, int index) {
+    	Picture munroImage;
+    	if (imageCache.containsKey(subject)) {
+    		return imageCache.get(subject);
+		}
+		//if in cache return picture
+		//else get image, add image to cache and return picture
+		else{
+			System.out.println("this show only once" + subject);
+			munroImage = baseService.getPicture(subject, 1);
+			imageCache.put(subject, munroImage);
+			return munroImage;
+		}
+
+	}
+
+
 }

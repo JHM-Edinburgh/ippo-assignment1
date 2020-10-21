@@ -20,7 +20,7 @@ public class ProptertyController implements Controller {
 
 	private View view;
 	private Service service;
-	HashMap<Integer, String> MunroMap = new HashMap<Integer, String>();
+	HashMap<Integer, String> MunroMap = new HashMap<>();
 
 	/**
 	 * Start the controller.
@@ -32,13 +32,10 @@ public class ProptertyController implements Controller {
 		// create the view and the service objects
 		view = new ViewFromProperties(this);
 		service = new ServiceFromProperties();
-		MunroList = Properties.get(controller.subjects);
+		MunroList = Properties.get("controller.subjects");
 
-		/* placeholder list until I get the get method to work */
-		MunroList = "Beinn a' Bheithir, Schiehallion, Ben Lui, Lochnagar";
-
-		/* should the list format be specified? */
-		generateButtons(MunroList);
+		/* Rename this method as it also works with MenuView */
+		generateOptions(MunroList);
 
 		// start the interface
 		view.start();
@@ -61,6 +58,8 @@ public class ProptertyController implements Controller {
 		// show the picture in the interface
 		view.showPicture(picture);
 	}
+
+	/* adds an item to the Hashmap */
 
 	public void addSubject(String Munro) {
 
@@ -98,19 +97,19 @@ public class ProptertyController implements Controller {
 		return returnItem;
 	}
 
-	public void generateButtons(String MunroList) {
+	//Genterates a list of Munro options for views classes to use
+	public void generateOptions(String MunroList) {
 
 		String CurrentMunro;
-		int index;
 
 		//gets first Munro from list
 		while(MunroList.length() > 0) {
 			CurrentMunro = getItemFromString(MunroList);
 			addSubject(CurrentMunro);
-			MunroList = MunroList.replace(CurrentMunro + ",", "");
-			if(CurrentMunro.equals(MunroList)) {
+			MunroList = MunroList.replace(CurrentMunro + ",", ""); //this line removes the Current Munro from the list of Munro's
+			if(CurrentMunro.equals(MunroList)) { /* checks if end of list and clears the list, required as the list does not end with a comma */
 				MunroList = "";
-			};
+			}
 		}
 	}
 }
