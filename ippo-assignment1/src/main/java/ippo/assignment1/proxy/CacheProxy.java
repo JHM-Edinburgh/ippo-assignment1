@@ -53,27 +53,18 @@ public class CacheProxy implements Service {
     * @return the requested picture
     */
 	public Picture getPicture(String subject, int index) {
-
-		return findPicture(subject, index);
-    }
-
-    /* gets image, but checks cache first
-	there is a problem with this code, canb you spot it?
-	need to get rid of it before submission
-     */
-    public Picture findPicture (String subject, int index) {
-    	Picture munroImage;
-    	if (imageCache.containsKey(subject)) {
-    		return imageCache.get(subject);
+		Picture munroImage;
+		if (imageCache.containsKey(subject)) {
+			return imageCache.get(subject);
 		}
 		//if in cache return picture
 		//else get image, add image to cache and return picture
 		else{
-			System.out.println("this show only once" + subject);
 			munroImage = baseService.getPicture(subject, 1);
 			imageCache.put(subject, munroImage);
 			return munroImage;
-		}
+
+    }
 
 	}
 

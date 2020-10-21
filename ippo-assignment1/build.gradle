@@ -20,7 +20,7 @@ apply plugin: 'java'
 // the 'uid' is used when running the BuggyProxy
 // you must replace the 'NONE' with your own user-id (eg. 's12345678')
 
-def uid = 'NONE'
+def uid = 's2006132'
 
 /*********************************************************************************************
  * dependencies

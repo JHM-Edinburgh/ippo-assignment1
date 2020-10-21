@@ -4,12 +4,13 @@ package ippo.assignment1.proxy;
 import static org.junit.Assert.*;
 import java.awt.image.BufferedImage;
 
+import ippo.assignment1.library.proxy.BuggyProxy;
 import org.junit.Test;
 
 
 import ippo.assignment1.library.Picture;
 import ippo.assignment1.library.service.Service;
-import ippo.assignment1.proxy.CacheProxy;
+import ippo.assignment1.proxy.BuggyProxyTest; //this line used to be import ippo.assignment1.proxy.CacheProxy
 
 /**
  * Tests for the cache proxy for the PictureViewer application.
@@ -17,7 +18,7 @@ import ippo.assignment1.proxy.CacheProxy;
  * @author YOUR NAME HERE
  * @version YOUR VERSION HERE
  */
-public class CacheProxyTest implements Service {
+public class BuggyProxyTest implements Service {
 	
 	/**
 	 * Test that requests for the same subject and index return the same image.
@@ -25,7 +26,7 @@ public class CacheProxyTest implements Service {
 	@Test
 	public void equalityTest() {
 
-		Service proxy = new CacheProxy(this);
+		Service proxy = new BuggyProxy(this);
 		Picture firstPicture = proxy.getPicture("equalityTest",2);
 		Picture secondPicture = proxy.getPicture("equalityTest",2);
 		assertTrue(
@@ -44,17 +45,28 @@ public class CacheProxyTest implements Service {
 	 *
 	 * @return the picture
 	 */
-
 	@Override
 	public Picture getPicture(String subject, int index) {
 		return new Picture((BufferedImage)null, subject ,serviceName(), index);
 	}
-	
+
 	/**
 	 * Return a textual name to identify the simulated service.
 	 *
 	 * @return the name of the service
 	 */
 	@Override
-	public String serviceName() { return "CacheProxyTest"; }
+	public String serviceName() { return "BuggyProxyTest"; }
+
+	@Test
+	public void newImageTest() {
+		Service proxy = new BuggyProxy(this);
+		Picture firstPicture = proxy.getPicture("imageTest1",2);
+		Picture secondPicture = proxy.getPicture("imageTest2",2);
+		assertFalse(
+				"same picture returned for different subject (same index)",
+				firstPicture == secondPicture);
+	}
 }
+
+
