@@ -54,10 +54,13 @@ public class CacheProxy implements Service {
     */
 	public Picture getPicture(String subject, int index) {
 
-		return baseService.getPicture(subject, index);
+		return findPicture(subject, index);
     }
 
-    /* gets image, but checks cache first */
+    /* gets image, but checks cache first
+	there is a problem with this code, canb you spot it?
+	need to get rid of it before submission
+     */
     public Picture findPicture (String subject, int index) {
     	Picture munroImage;
     	if (imageCache.containsKey(subject)) {

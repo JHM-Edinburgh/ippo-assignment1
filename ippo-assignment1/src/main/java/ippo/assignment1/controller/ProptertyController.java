@@ -33,8 +33,6 @@ public class ProptertyController implements Controller {
 		view = new ViewFromProperties(this);
 		service = new ServiceFromProperties();
 		MunroList = Properties.get("controller.subjects");
-
-		/* Rename this method as it also works with MenuView */
 		generateOptions(MunroList);
 
 		// start the interface
