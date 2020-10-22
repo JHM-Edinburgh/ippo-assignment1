@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ippo.assignment1"},{"l":"ippo.assignment1.controller"},{"l":"ippo.assignment1.proxy"}];updateSearchResults();
