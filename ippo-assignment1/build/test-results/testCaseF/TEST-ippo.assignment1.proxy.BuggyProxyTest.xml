@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ippo.assignment1.proxy.BuggyProxyTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-10-21T19:13:07" hostname="DESKTOP-D2R9I8M" time="0.019">
+  <properties/>
+  <testcase name="newImageTest" classname="ippo.assignment1.proxy.BuggyProxyTest" time="0.018"/>
+  <testcase name="equalityTest" classname="ippo.assignment1.proxy.BuggyProxyTest" time="0.001"/>
+  <system-out><![CDATA[BuggyProxy: student id=s2006132, simulating bug 'F'
+BuggyProxy: student id=s2006132, simulating bug 'F'
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

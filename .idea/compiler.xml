@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="ippo-assignment1.ippo-assignment1.main" target="15" />
-      <module name="ippo-assignment1.ippo-assignment1.test" target="15" />
+      <module name="ippo-assignment1.ippo-assignment1.main~1" target="15" />
+      <module name="ippo-assignment1.ippo-assignment1.test~1" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
