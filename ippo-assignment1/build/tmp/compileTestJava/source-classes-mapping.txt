@@ -1,4 +1,0 @@
-ippo/assignment1/proxy/CacheProxyTest.java
- ippo.assignment1.proxy.CacheProxyTest
-ippo/assignment1/proxy/BuggyProxyTest.java
- ippo.assignment1.proxy.BuggyProxyTest
